@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "intersection-observer": "^0.5.1",
+    "svg.js": "^2.7.1",
     "vue": "^2.5.17",
     "vue-scrollama": "^1.1.0"
   },

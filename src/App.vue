@@ -10,11 +10,12 @@
     </div>
 
     <Scrollama
-      :debug='true'
       :offset='0.5'
-      @step-enter='({ element }) => (activeStep = element.dataset.stepNo)'
+      @step-enter='handleStepChange'
     >
-      <div class='graphic' slot='graphic'>{{ activeStep }}</div>
+      <div class='graphic' slot='graphic'>
+        <Graphic :stepData='{activeStep, directionOfChange}' />
+      </div>
       <div class='step' data-step-no='1'>step 1</div>
       <div class='step' data-step-no='2'>step 2</div>
       <div class='step' data-step-no='3'>step 3</div>
@@ -32,14 +33,27 @@
 import 'intersection-observer'
 import Scrollama from 'vue-scrollama'
 
+import Graphic from '@/components/Graphic.vue'
+
+// scroll to top on reload
+window.scrollTo(0, 0)
+
 export default {
   name: 'app',
   components: {
-    Scrollama
+    Scrollama,
+    Graphic
   },
   data () {
     return {
-      activeStep: null
+      activeStep: null,
+      directionOfChange: null
+    }
+  },
+  methods: {
+    handleStepChange ({ element, index, direction }) {
+      this.activeStep = element.dataset.stepNo
+      this.directionOfChange = direction
     }
   }
 }
@@ -74,7 +88,6 @@ export default {
   margin: 0 3rem;
   border: 1px solid #ccc;
   background-color: #eee;
-  font-size: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
