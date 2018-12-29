@@ -20,6 +20,9 @@
       <div class='step' data-step-no='2'>step 2</div>
       <div class='step' data-step-no='3'>step 3</div>
       <div class='step' data-step-no='4'>step 4</div>
+      <div class='step' data-step-no='5'>step 5</div>
+      <div class='step' data-step-no='6'>step 6</div>
+      <div class='step' data-step-no='7'>step 7</div>
     </Scrollama>
 
     <div class='outro'>
