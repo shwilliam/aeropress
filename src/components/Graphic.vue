@@ -16,7 +16,8 @@ export default {
   data () {
     return {
       width: 300,
-      height: 400
+      height: 400,
+      stepsRan: []
     }
   },
   mounted () {
@@ -73,115 +74,91 @@ export default {
   },
   watch: {
     stepData: function ({ activeStep, directionOfChange }) {
-      this[`step${activeStep}`](directionOfChange)
+      if (directionOfChange === 'down' && this.stepsRan.indexOf(activeStep) === -1) {
+        this[`step${activeStep}`](directionOfChange)
+        this.stepsRan.push(activeStep)
+      }
     }
   },
   methods: {
-    step1 (directionOfChange) {
-      let aeropressFilterNextYPos = 850
-      if (directionOfChange === 'up') aeropressFilterNextYPos = 670
-
+    step1 () {
       this.aeropressFilter
         .animate()
-        .move(258, aeropressFilterNextYPos)
-
-      let aeropressBottomNextYPos = -48
-      if (directionOfChange === 'up') aeropressBottomNextYPos = -400
+        .move(258, 850)
 
       this.aeropressBottom
         .animate()
-        .move(-56.5, aeropressBottomNextYPos)
+        .move(-56.5, -48)
     },
-    step2 (directionOfChange) {
-      let nextYPosCoffeeCupTop = 850
-      let nextYPosCoffeeCupBottom = 439
-      if (directionOfChange === 'up') {
-        nextYPosCoffeeCupTop = 1850
-        nextYPosCoffeeCupBottom = 1439
-      }
-
+    step2 () {
       this.coffeeCupTop
         .animate()
-        .move(228, nextYPosCoffeeCupTop)
+        .move(228, 850)
 
       this.coffeeCupBottom
         .animate()
-        .move(-70.7, nextYPosCoffeeCupBottom)
+        .move(-70.7, 439)
     },
-    step3 (directionOfChange) {
-      let nextYPos = -470
-      if (directionOfChange === 'up') nextYPos = -1000
+    step3 () {
+      this.aeropressTop
+        .animate()
+        .move(-13, -470)
+    },
+    step4 () {
+      this.stick
+        .animate()
+        .move(146, 100)
+
+      this.stick
+        .animate()
+        .rotate(1)
+
+      this.stick
+        .animate()
+        .rotate(-1)
+
+      this.stick
+        .animate()
+        .rotate(1)
+
+      this.stick
+        .animate()
+        .rotate(0)
 
       this.aeropressTop
         .animate()
-        .move(-13, nextYPos)
+        .move(-13, -1000)
     },
-    step4 (directionOfChange) {
-      let nextYPos = -1000
-      if (directionOfChange === 'up') nextYPos = -470
-
-      this.aeropressTop
-        .animate()
-        .move(-13, nextYPos)
-    },
-    step5 (directionOfChange) {
-      let nextYPos = 100
-      if (directionOfChange === 'up') {
-        nextYPos = -1000
-      } else {
-        this.stick
-          .animate()
-          .move(146, nextYPos)
-
-        this.stick
-          .animate()
-          .rotate(1)
-
-        this.stick
-          .animate()
-          .rotate(-1)
-
-        this.stick
-          .animate()
-          .rotate(1)
-
-        this.stick
-          .animate()
-          .rotate(0)
-      }
-    },
-    step6 (directionOfChange) {
-      let nextYPos = -470
-      if (directionOfChange === 'up') nextYPos = -1000
-
+    step5 () {
       this.stick
         .animate()
         .move(146, -1000)
 
       this.aeropressTop
         .animate()
-        .move(-13, nextYPos)
-
+        .move(-13, -470)
+    },
+    step6 () {
       this.aeropressTop
-        .animate({ delay: '0.4s' })
+        .animate()
         .move(-13, -175)
     },
-    step7 (directionOfChange) {
-      let yMoveAmount = -2000
-      if (directionOfChange === 'up') yMoveAmount = -0
-
+    step7 () {
       this.aeropressTop
         .animate()
-        .dmove(0, yMoveAmount)
+        .dmove(0, -2000)
+
       this.aeropressBottom
         .animate()
-        .dmove(0, yMoveAmount)
+        .dmove(0, -2000)
+
       this.aeropressFilterHolder
         .animate()
-        .dmove(0, yMoveAmount)
+        .dmove(0, -2000)
+
       this.aeropressFilter
         .animate()
-        .dmove(0, yMoveAmount)
+        .dmove(0, -2000)
     }
   }
 }
