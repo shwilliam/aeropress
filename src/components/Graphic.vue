@@ -159,6 +159,41 @@ export default {
       this.aeropressFilter
         .animate()
         .dmove(0, -2000)
+
+      this.heatLeft = this.container
+        .path('M10,10 L50,100 L90,50')
+        .scale(scaleFactor)
+        .stroke({ color: '#000', width: '6px' })
+        .fill('none')
+        .rotate(90)
+
+      this.heatRight = this.container
+        .path('M10,10 L50,100 L90,50')
+        .scale(scaleFactor)
+        .stroke({ color: '#000', width: '6px' })
+        .fill('none')
+        .rotate(90)
+
+      const nums = []
+      for (let i = 0; i < 100; i++) {
+        nums.push(i)
+      }
+      let t = 0
+
+      const animateHeat = () => {
+        let points = nums.map(num => {
+          const y = 100 + 10 * Math.sin((num + t) / 10)
+          const x = num * 1.4
+          return [x, y]
+        })
+        let pathLeft = `M${points.map(p => `${p[0] + 480},${p[1] - 300}`).join(' L')}`
+        let pathRight = `M${points.map(p => `${p[0] + 480},${p[1] - 420}`).join(' L')}`
+        this.heatLeft.attr({ d: pathLeft })
+        this.heatRight.attr({ d: pathRight })
+        t += 0.5
+        requestAnimationFrame(animateHeat)
+      }
+      animateHeat()
     }
   }
 }
