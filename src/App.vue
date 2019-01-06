@@ -41,7 +41,7 @@
     </Scrollama>
 
     <div class='outro'>
-      For more information about the AeroPress try this link, or this one. To get your own, check out the official website.
+      For more information about the AeroPress try <a href="http://nordiccoffeeculture.com/what-is-the-best-way-to-brew-aeropress-coffee/" target="_blank" rel="noopener noreferrer">this link</a>, or <a href="https://www.stumptowncoffee.com/brew-guides/aeropress" target="_blank" rel="noopener noreferrer">this one</a>. To get your own, check out <a href="https://aeropressinc.com/" target="_blank" rel="noopener noreferrer">the official website</a>.
     </div>
   </div>
 </template>
@@ -125,5 +125,8 @@ export default {
 }
 .step:first-of-type {
   margin-top: 30vh;
+}
+a {
+  color: #000;
 }
 </style>
