@@ -72,6 +72,16 @@ export default {
       .stroke({ color: '#000', width: '3px' })
       .move(146, -1000)
 
+    this.water = this.container.rect(56.5, 0)
+      .fill('#c4e3ed')
+      .x(117.5)
+      .y(245.8)
+
+    this.waterBottom = this.container.ellipse(55, 0)
+      .fill('#c4e3ed')
+      .x(118.2)
+      .y(246)
+
     this.coffeeGroundsCoordinates = []
     const xAmount = 24
     const xInitial = 11
@@ -145,6 +155,15 @@ export default {
         })
     },
     step3 () {
+      this.water
+        .animate()
+        .height(70)
+        .y(177)
+
+      this.waterBottom
+        .animate()
+        .radius(28.3, 4.5)
+
       this.aeropressTop
         .animate()
         .move(-13, -470)
@@ -173,6 +192,12 @@ export default {
       this.aeropressTop
         .animate()
         .move(-13, -1000)
+
+      this.water.animate().fill('#9f8574')
+
+      this.waterBottom.animate().fill('#9f8574')
+
+      SVG.select('.coffee-grounds').animate().opacity(0)
     },
     step5 () {
       this.stick
@@ -188,6 +213,16 @@ export default {
       this.aeropressTop
         .animate()
         .move(-13, -175)
+
+      this.water
+        .animate()
+        .height(0)
+        .y(244)
+
+      this.waterBottom
+        .animate()
+        .y(244)
+        .radius(28.3, 0)
     },
     step7 () {
       this.aeropressTop
