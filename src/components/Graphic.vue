@@ -131,6 +131,7 @@ export default {
     },
     step5 () {
       this.stick
+        .finish()
         .animate()
         .move(146, -1000)
 
@@ -145,6 +146,7 @@ export default {
     },
     step7 () {
       this.aeropressTop
+        .finish()
         .animate()
         .dmove(0, -2000)
 
