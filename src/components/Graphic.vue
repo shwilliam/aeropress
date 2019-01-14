@@ -204,11 +204,11 @@ export default {
         .animate()
         .move(-13, -1000)
 
-      this.water.animate().fill('#9f8574')
+      this.water.animate({ delay: '1.4s' }).fill('#9f8574')
 
-      this.waterBottom.animate().fill('#9f8574')
+      this.waterBottom.animate({ delay: '1.4s' }).fill('#9f8574')
 
-      SVG.select('.coffee-grounds').animate().opacity(0)
+      SVG.select('.coffee-grounds').animate({ delay: '1.4s' }).opacity(0)
     },
     step5 () {
       this.stick.finish()
