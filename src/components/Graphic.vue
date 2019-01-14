@@ -139,6 +139,9 @@ export default {
         .move(-56.5, -48)
     },
     step2 () {
+      this.aeropressFilter.finish()
+      this.aeropressBottom.finish()
+
       this.coffeeCupTop
         .animate()
         .move(228, 850)
@@ -155,6 +158,10 @@ export default {
         })
     },
     step3 () {
+      this.coffeeCupTop.finish()
+      this.coffeeCupBottom.finish()
+      SVG.select('.coffee-grounds').finish()
+
       this.water
         .animate()
         .height(70)
@@ -169,6 +176,10 @@ export default {
         .move(-13, -470)
     },
     step4 () {
+      this.water.finish()
+      this.waterBottom.finish()
+      this.aeropressTop.finish()
+
       this.stick
         .animate()
         .move(146, 100)
@@ -200,6 +211,12 @@ export default {
       SVG.select('.coffee-grounds').animate().opacity(0)
     },
     step5 () {
+      this.stick.finish()
+      this.aeropressTop.finish()
+      this.water.finish()
+      this.waterBottom.finish()
+      SVG.select('.coffee-grounds').finish()
+
       this.stick
         .finish()
         .animate()
@@ -210,6 +227,9 @@ export default {
         .move(-13, -470)
     },
     step6 () {
+      this.stick.finish()
+      this.aeropressTop.finish()
+
       this.aeropressTop
         .animate()
         .move(-13, -175)
@@ -225,6 +245,10 @@ export default {
         .radius(28.3, 0)
     },
     step7 () {
+      this.aeropressTop.finish()
+      this.water.finish()
+      this.waterBottom.finish()
+
       this.aeropressTop
         .finish()
         .animate()

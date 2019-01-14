@@ -89,7 +89,6 @@ export default {
   beforeDestroy () {
     window.removeEventListener('resize', this.updateWindowWidth)
   }
-  // if scrolled to bottom finish all animations
 }
 </script>
 
