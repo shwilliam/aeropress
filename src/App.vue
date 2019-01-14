@@ -27,7 +27,7 @@
           2. Place the AeroPress on top of your coffee cup/jug and pour about 15g of your favorite ground coffee inside
         </div>
         <div class='step' data-step-no='3'>
-          3. Add about 200g of boiling water and carefully fit the plunger inside (preventing the coffee to drip through the filter)
+          3. Add about 200g of boiling water and carefully fit the plunger inside (preventing the coffee from dripping through the filter)
         </div>
         <div class='step' data-step-no='4'>
           4. After about 1 minute, remove the plunger and give your coffee a good stir
@@ -68,7 +68,7 @@ export default {
   data () {
     return {
       activeStep: null,
-      breakpoint: 660,
+      breakpoint: 700,
       directionOfChange: null,
       windowWidth: null
     }
@@ -158,7 +158,7 @@ a {
 }
 #app.small header .instructions {
   position: relative;
-  left: 0px;
+  left: 4px;
 }
 #app.small .scrollama-graphic, .graphic {
   background-color: white;
