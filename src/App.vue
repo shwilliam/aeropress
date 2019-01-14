@@ -1,5 +1,5 @@
 <template>
-  <div id='app' :class='windowWidth < 660 ? "small" : null'>
+  <div id='app' :class='windowWidth < breakpoint ? "small" : null'>
     <header>
       <h1>AeroPress</h1>
       <p>
@@ -14,7 +14,7 @@
 
     <main>
       <Scrollama
-        :offset='0.3'
+        :offset='windowWidth < breakpoint ? 0.6 : 0.5'
         @step-enter='handleStepChange'
       >
         <div class='graphic' slot='graphic'>
@@ -68,6 +68,7 @@ export default {
   data () {
     return {
       activeStep: null,
+      breakpoint: 660,
       directionOfChange: null,
       windowWidth: null
     }
@@ -88,6 +89,7 @@ export default {
   beforeDestroy () {
     window.removeEventListener('resize', this.updateWindowWidth)
   }
+  // if scrolled to bottom finish all animations
 }
 </script>
 
