@@ -94,6 +94,9 @@ export default {
 
 <style src='vue-scrollama/dist/vue-scrollama.css'></style>
 <style>
+html {
+  background-color: #fffcf2;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -104,10 +107,13 @@ export default {
   line-height: 24px;
 }
 header {
-  padding-top: 15vh;
+  padding-top: 10vh;
   padding-right: 6vw;
   padding-left: 10vw;
   padding-bottom: 10vh;
+}
+header h1 {
+  font-size: 70px;
 }
 p.instructions {
   padding-top: 17vh;
@@ -151,17 +157,21 @@ a {
   color: #000;
 }
 #app.small {
-  width: 320px;
+  padding-top: 40px;
+  width: 340px;
 }
 #app.small header {
   padding: 30px 0 40px 0;
 }
+#app.small header h1 {
+  font-size: 45px;
+}
 #app.small header .instructions {
   position: relative;
-  left: 4px;
+  left: -6px;
 }
 #app.small .scrollama-graphic, .graphic {
-  background-color: white;
+  background-color: #fffcf2;
   z-index: 2;
 }
 #app.small .scrollama-container .scrollama-graphic {
