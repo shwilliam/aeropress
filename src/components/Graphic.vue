@@ -71,6 +71,44 @@ export default {
       .line(146, 0, 146, 120)
       .stroke({ color: '#000', width: '3px' })
       .move(146, -1000)
+
+    this.coffeeGroundsCoordinates = []
+    const xAmount = 24
+    const xInitial = 11
+    const yEnd = 116
+    const xSpace = 2.24
+    const wideLayer = Array.from(Array(xAmount), (x, i) => {
+      return {
+        x: xInitial + (i * xSpace) + (Math.random() * 2),
+        y: yEnd + (Math.random() * 0.6)
+      }
+    })
+
+    const ySpace = 1.4
+    const layers = 4
+    Array(layers).fill(null)
+      .forEach((layer, i) => {
+        if (i === 0) {
+          this.coffeeGroundsCoordinates.push(...wideLayer)
+        } else {
+          wideLayer.pop()
+          this.coffeeGroundsCoordinates.push(
+            ...wideLayer.map(({ x, y }) => {
+              const newY = y + (ySpace * i) + (Math.random() * 2)
+              const newX = x + (xSpace * (Math.random() * 1.2))
+              return { x: newX, y: newY }
+            })
+          )
+        }
+      })
+
+    this.coffeeGroundsCoordinates.forEach(({ x, y }, i) => {
+      this.container.polygon('850,75  958,137.5 958,262.5 850,325 742,262.6 742,137.5')
+        .fill('#000')
+        .attr({ class: 'coffee-grounds' })
+        .move(x, -500)
+        .scale(0.015, 0.01)
+    })
   },
   watch: {
     stepData: function ({ activeStep, directionOfChange }) {
@@ -98,6 +136,13 @@ export default {
       this.coffeeCupBottom
         .animate()
         .move(-70.7, 439)
+
+      SVG.select('.coffee-grounds').members
+        .forEach((el, i) => {
+          el
+            .animate()
+            .move(0, (parseFloat(this.coffeeGroundsCoordinates[i].y) / 0.01) + (496 / 0.01))
+        })
     },
     step3 () {
       this.aeropressTop
