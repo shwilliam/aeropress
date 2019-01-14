@@ -101,10 +101,11 @@ export default {
   color: #2c3e50;
   max-width: 960px;
   margin: 0 auto;
+  line-height: 24px;
 }
 header {
   padding-top: 15vh;
-  padding-right: 5vw;
+  padding-right: 6vw;
   padding-left: 10vw;
   padding-bottom: 10vh;
 }
