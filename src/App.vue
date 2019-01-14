@@ -1,6 +1,6 @@
 <template>
-  <div id='app'>
-    <div class='intro'>
+  <div id='app' :class='windowWidth < 660 ? "small" : null'>
+    <header>
       <h1>AeroPress</h1>
       <p>
         Invented in 2005 by Alan Adler, the AeroPress is a relatively new coffee maker that is both lightweight and compact. It is a full immersion brew, like a French Press, but filtered with paper like a pour over, producing a clean and full-bodied cup of coffee.
@@ -10,39 +10,43 @@
         ↓<br /><br /><br /><br /><br /><br />
         ↓
       </p>
-    </div>
+    </header>
 
-    <Scrollama
-      :offset='0.5'
-      @step-enter='handleStepChange'
-    >
-      <div class='graphic' slot='graphic'>
-        <Graphic :stepData='{activeStep, directionOfChange}' />
-      </div>
-      <div class='step' data-step-no='1'>
-        1. Fit a filter paper in the filter holder and attach it to the bottom of your AeroPress chamber
-      </div>
-      <div class='step' data-step-no='2'>
-        2. Place the AeroPress on top of your coffee cup/jug and pour about 15g of your favorite ground coffee inside
-      </div>
-      <div class='step' data-step-no='3'>
-        3. Add about 200g of boiling water and carefully fit the plunger inside (preventing the coffee to drip through the filter)
-      </div>
-      <div class='step' data-step-no='4'>
-        4. After about 1 minute, remove the plunger and give your coffee a good stir
-      </div>
-      <div class='step' data-step-no='5'>
-        5. Replace the plunger and let it brew for about another minute
-      </div>
-      <div class='step' data-step-no='6'>
-        6. Gently and slowly press the plunger down until all of the coffee has been pushed through the filter
-      </div>
-      <div class='step' data-step-no='7'></div>
-    </Scrollama>
+    <main>
+      <Scrollama
+        :offset='0.3'
+        @step-enter='handleStepChange'
+      >
+        <div class='graphic' slot='graphic'>
+          <Graphic :stepData='{activeStep, directionOfChange}' />
+        </div>
+        <div class='step' data-step-no='1'>
+          1. Fit a filter paper in the filter holder and attach it to the bottom of your AeroPress chamber
+        </div>
+        <div class='step' data-step-no='2'>
+          2. Place the AeroPress on top of your coffee cup/jug and pour about 15g of your favorite ground coffee inside
+        </div>
+        <div class='step' data-step-no='3'>
+          3. Add about 200g of boiling water and carefully fit the plunger inside (preventing the coffee to drip through the filter)
+        </div>
+        <div class='step' data-step-no='4'>
+          4. After about 1 minute, remove the plunger and give your coffee a good stir
+        </div>
+        <div class='step' data-step-no='5'>
+          5. Replace the plunger and let it brew for about another minute
+        </div>
+        <div class='step' data-step-no='6'>
+          6. Gently and slowly press the plunger down until all of the coffee has been pushed through the filter
+        </div>
+        <div class='step' data-step-no='7'>
+          7. Enjoy your freshly brewed cup of coffee
+        </div>
+      </Scrollama>
+    </main>
 
-    <div class='outro'>
+    <footer>
       For more information about the AeroPress try <a href="http://nordiccoffeeculture.com/what-is-the-best-way-to-brew-aeropress-coffee/" target="_blank" rel="noopener noreferrer">this link</a>, or <a href="https://www.stumptowncoffee.com/brew-guides/aeropress" target="_blank" rel="noopener noreferrer">this one</a>. To get your own, check out <a href="https://aeropressinc.com/" target="_blank" rel="noopener noreferrer">the official website</a>.
-    </div>
+    </footer>
   </div>
 </template>
 
@@ -64,14 +68,25 @@ export default {
   data () {
     return {
       activeStep: null,
-      directionOfChange: null
+      directionOfChange: null,
+      windowWidth: null
     }
   },
   methods: {
     handleStepChange ({ element, index, direction }) {
       this.activeStep = element.dataset.stepNo
       this.directionOfChange = direction
+    },
+    updateWindowWidth () {
+      this.windowWidth = window.innerWidth
     }
+  },
+  mounted () {
+    this.updateWindowWidth()
+    window.addEventListener('resize', this.updateWindowWidth)
+  },
+  beforeDestroy () {
+    window.removeEventListener('resize', this.updateWindowWidth)
   }
 }
 </script>
@@ -83,19 +98,20 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  min-width: 620px;
+  max-width: 960px;
+  margin: 0 auto;
 }
-.intro {
+header {
   padding-top: 15vh;
   padding-right: 5vw;
   padding-left: 10vw;
   padding-bottom: 10vh;
 }
-.intro p.instructions {
+p.instructions {
   padding-top: 17vh;
   text-align: center;
 }
-.outro {
+footer {
   padding: 0 20vh 20vh 20vh;
 }
 .scrollama-container {
@@ -126,7 +142,52 @@ export default {
 .step:first-of-type {
   margin-top: 30vh;
 }
+.step:last-of-type {
+  margin-bottom: 0;
+}
 a {
   color: #000;
+}
+#app.small {
+  width: 320px;
+}
+#app.small header {
+  padding: 30px 0 40px 0;
+}
+#app.small header .instructions {
+  position: relative;
+  left: 0px;
+}
+#app.small .scrollama-graphic, .graphic {
+  background-color: white;
+  z-index: 2;
+}
+#app.small .scrollama-container .scrollama-graphic {
+  height: 380px;
+  top: -60px;
+  padding-top: 100px;
+  padding-bottom: 30px;
+}
+#app.small .scrollama-graphic > * {
+  position: relative;
+  left: -28px;
+}
+#app.small .scrollama-steps {
+  position: relative;
+  top: 0;
+  left: -380px;
+}
+#app.small .scrollama-steps > * {
+  width: 290px;
+}
+#app.small .step {
+  padding: 120px 0 10px 0;
+  margin: 0;
+}
+#app.small .step:first-of-type {
+  margin-top: 446px;
+}
+#app.small footer {
+  padding: 160px 0 180px 0;
 }
 </style>
