@@ -1,6 +1,6 @@
 <template>
   <div id='app' :class='windowWidth < breakpoint ? "small" : null'>
-    <header>
+    <header tabindex='0'>
       <h1>AeroPress</h1>
       <p>
         Invented in 2005 by Alan Adler, the AeroPress is a relatively new coffee maker that is both lightweight and compact. It is a full immersion brew, like a French Press, but filtered with paper like a pour over, producing a clean and full-bodied cup of coffee.
@@ -20,25 +20,25 @@
         <div class='graphic' slot='graphic'>
           <Graphic :stepData='{activeStep, directionOfChange}' />
         </div>
-        <div class='step' data-step-no='1'>
+        <div class='step' data-step-no='1' tabindex='0'>
           1. Fit a filter paper in the filter holder and attach it to the bottom of your AeroPress chamber
         </div>
-        <div class='step' data-step-no='2'>
+        <div class='step' data-step-no='2' tabindex='0'>
           2. Place the AeroPress on top of your coffee cup/jug and pour about 15g of your favorite ground coffee inside
         </div>
-        <div class='step' data-step-no='3'>
+        <div class='step' data-step-no='3' tabindex='0'>
           3. Add about 200g of boiling water and carefully fit the plunger inside (preventing the coffee from dripping through the filter)
         </div>
-        <div class='step' data-step-no='4'>
+        <div class='step' data-step-no='4' tabindex='0'>
           4. After about 1 minute, remove the plunger and give your coffee a good stir
         </div>
-        <div class='step' data-step-no='5'>
+        <div class='step' data-step-no='5' tabindex='0'>
           5. Replace the plunger and let it brew for about another minute
         </div>
-        <div class='step' data-step-no='6'>
+        <div class='step' data-step-no='6' tabindex='0'>
           6. Gently and slowly press the plunger down until all of the coffee has been pushed through the filter
         </div>
-        <div class='step' data-step-no='7'>
+        <div class='step' data-step-no='7' tabindex='0'>
           7. Enjoy your freshly brewed cup of coffee
         </div>
       </Scrollama>
@@ -141,9 +141,7 @@ footer {
   justify-content: center;
 }
 .step {
-  padding: 0 0 40vh 0;
-  margin: 20vh 2rem 0 .3rem;
-  margin-bottom: 10vh;
+  margin: 20vh 2rem 50vh .3rem;
   display: flex;
   align-items: center;
 }
