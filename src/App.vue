@@ -149,7 +149,7 @@ footer {
   margin-top: 30vh;
 }
 .step:last-of-type {
-  margin-bottom: 0;
+  margin-bottom: 230px;
 }
 a {
   color: #000;
